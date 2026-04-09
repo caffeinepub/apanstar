@@ -1,0 +1,124 @@
+// Version: 1.0.0
+type ChallengeCategory__1020514089 =
+  {#Coding; #Cooking; #Gaming; #Mimicry; #Singing};
+type ChallengeId__120246472 = Nat;
+type ChallengeId__16003141 = ChallengeId__120246472;
+type ChallengeId__326162513 = ChallengeId__120246472;
+type ChallengeInternal__884061984 =
+  {
+    category : ChallengeCategory__1020514089;
+    endDate : Timestamp__341489658;
+    id : ChallengeId__326162513;
+    rules : Text;
+    startDate : Timestamp__341489658;
+    title : Text;
+    var winnerId : ?SubmissionId__315887290
+  };
+type Data__159895909<T> = {var count : Nat__490723111; elements : [var ?T]};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__667636161<T> =
+  {children : [var ?Node__92254746<T>]; data : Data__159895909<T>};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__520550824<T> = {data : Data__159895909<T>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Node__92254746<T> =
+  {#internal : Internal__667636161<T>; #leaf : Leaf__520550824<T>};
+type Rank__829533772 = {#Bronze; #Gold; #Platinum; #Silver};
+type ReferralRecord__305882284 =
+  {
+    createdAt : Timestamp__341489658;
+    refereeId : UserId__902872309;
+    referrerId : UserId__902872309
+  };
+type SubmissionId__134711665 = SubmissionId__741433157;
+type SubmissionId__315887290 = SubmissionId__741433157;
+type SubmissionId__741433157 = Nat;
+type SubmissionInternal__935474596 =
+  {
+    challengeId : ChallengeId__326162513;
+    creatorId : UserId__902872309;
+    var effect : ?VideoEffect__113748485;
+    id : SubmissionId__315887290;
+    submittedAt : Timestamp__341489658;
+    videoUrl : Text;
+    var voteCount : Nat
+  };
+type Timestamp__14779179 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type Timestamp__341489658 = Timestamp__301639476;
+type UserId__1065790203 = UserId__158757552;
+type UserId__158757552 = Principal;
+type UserId__902872309 = UserId__158757552;
+type UserInternal__672874610 =
+  {
+    var bio : Text;
+    var city : Text;
+    var coinBalance : Nat;
+    createdAt : Timestamp__341489658;
+    var creatorName : Text;
+    var district : Text;
+    var hasLegendTag : Bool;
+    id : UserId__902872309;
+    var isUnlocked : Bool;
+    var lastCoinRefreshDay : Nat;
+    var rank : Rank__829533772;
+    var referralCode : Text;
+    var referralCount : Nat;
+    var totalVotesReceived : Nat;
+    var videoCount : Nat
+  };
+type VideoEffect__113748485 = {#Cartoon; #Cinematic; #Professional};
+type VoteRecord__372896371 =
+  {
+    challengeId : ChallengeId__16003141;
+    submissionId : SubmissionId__134711665;
+    votedAt : Timestamp__14779179;
+    voterId : UserId__1065790203
+  };
+actor {
+  stable challengeCounter : {var value : Nat};
+  stable challenges :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ChallengeInternal__884061984]];
+      var elementIndex : Nat__490723111
+    };
+  stable ownerRef : {var isSet : Bool; var value : Principal};
+  stable referralIndex :
+    {
+      var root : Node__46230540<Text, UserId__902872309>;
+      var size : Nat__490723111
+    };
+  stable referrals :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ReferralRecord__305882284]];
+      var elementIndex : Nat__490723111
+    };
+  stable submissionCounter : {var value : Nat};
+  stable submissions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?SubmissionInternal__935474596]];
+      var elementIndex : Nat__490723111
+    };
+  stable users :
+    {
+      var root : Node__46230540<UserId__902872309, UserInternal__672874610>;
+      var size : Nat__490723111
+    };
+  stable voteRecords :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?VoteRecord__372896371]];
+      var elementIndex : Nat__490723111
+    };
+  stable votedPairs :
+    {var root : Node__92254746<(Principal, Nat)>; var size : Nat__490723111}
+};

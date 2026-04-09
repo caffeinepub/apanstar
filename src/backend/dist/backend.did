@@ -1,0 +1,121 @@
+type VideoEffect = 
+ variant {
+   Cartoon;
+   Cinematic;
+   Professional;
+ };
+type UserId = principal;
+type User = 
+ record {
+   bio: text;
+   city: text;
+   coinBalance: nat;
+   createdAt: Timestamp;
+   creatorName: text;
+   district: text;
+   hasLegendTag: bool;
+   id: UserId;
+   isUnlocked: bool;
+   rank: Rank;
+   referralCode: text;
+   referralCount: nat;
+   totalVotesReceived: nat;
+   videoCount: nat;
+ };
+type Timestamp = int;
+type SubmitVideoInput = 
+ record {
+   challengeId: ChallengeId;
+   effect: opt VideoEffect;
+   videoUrl: text;
+ };
+type SubmissionId = nat;
+type Submission = 
+ record {
+   challengeId: ChallengeId;
+   creatorId: UserId;
+   effect: opt VideoEffect;
+   id: SubmissionId;
+   submittedAt: Timestamp;
+   videoUrl: text;
+   voteCount: nat;
+ };
+type RegisterInput = 
+ record {
+   bio: text;
+   city: text;
+   creatorName: text;
+   district: text;
+   referralCode: opt text;
+ };
+type ReferralInfo = 
+ record {
+   isUnlocked: bool;
+   referralCode: text;
+   referralCount: nat;
+ };
+type Rank = 
+ variant {
+   Bronze;
+   Gold;
+   Platinum;
+   Silver;
+ };
+type CreateChallengeInput = 
+ record {
+   category: ChallengeCategory;
+   endDate: Timestamp;
+   rules: text;
+   startDate: Timestamp;
+   title: text;
+ };
+type ChallengeId = nat;
+type ChallengeCategory = 
+ variant {
+   Coding;
+   Cooking;
+   Gaming;
+   Mimicry;
+   Singing;
+ };
+type Challenge = 
+ record {
+   category: ChallengeCategory;
+   endDate: Timestamp;
+   id: ChallengeId;
+   rules: text;
+   startDate: Timestamp;
+   title: text;
+   winnerId: opt SubmissionId;
+ };
+service : {
+  adminSeedData: () -> (text);
+  castVote: (submissionId: nat, challengeId: nat) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  claimOwnership: () -> (bool);
+  createChallenge: (input: CreateChallengeInput) -> (Challenge);
+  finalizeChallenge: (challengeId: ChallengeId) -> (opt SubmissionId);
+  getChallenge: (id: ChallengeId) -> (opt Challenge) query;
+  getChallengeLeaderboard: (challengeId: ChallengeId) ->
+   (vec Submission) query;
+  getMyProfile: () -> (opt User);
+  getOwner: () -> (principal) query;
+  getReferralInfo: () -> (opt ReferralInfo);
+  getRemainingCoins: () -> (nat);
+  getUserById: (userId: principal) -> (opt User) query;
+  getVoteCount: (submissionId: nat) -> (nat) query;
+  listChallenges: () -> (vec Challenge) query;
+  listUsersByLocation: (city: text, district: opt text) -> (vec User) query;
+  registerUser: (input: RegisterInput) -> (User);
+  submitVideo: (input: SubmitVideoInput) -> (Submission);
+  trackReferral: (referralCode: text) -> (variant {
+                                            err: text;
+                                            ok;
+                                          });
+  updateMyProfile: (creatorName: opt text, bio: opt text, city: opt text,
+   district: opt text) -> (User);
+  validateReferralCode: (code: text) -> (opt principal) query;
+}

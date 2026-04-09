@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Bricolage Grotesque", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 0.625rem;
+
+    --background: 0.96 0.01 60;
+    --foreground: 0.15 0.01 60;
+    --card: 0.98 0.01 60;
+    --card-foreground: 0.15 0.01 60;
+    --popover: 0.98 0.01 60;
+    --popover-foreground: 0.15 0.01 60;
+
+    --primary: 0.65 0.22 65;
+    --primary-foreground: 0.98 0.01 60;
+
+    --secondary: 0.35 0.18 275;
+    --secondary-foreground: 0.95 0.01 60;
+    --muted: 0.92 0.01 60;
+    --muted-foreground: 0.45 0.01 60;
+
+    --accent: 0.6 0.25 20;
+    --accent-foreground: 0.98 0.01 60;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.01 60;
+
+    --border: 0.88 0.01 60;
+    --input: 0.88 0.01 60;
+    --ring: 0.65 0.22 65;
+
+    --chart-1: 0.65 0.22 65;
+    --chart-2: 0.35 0.18 275;
+    --chart-3: 0.58 0.2 160;
+    --chart-4: 0.6 0.25 20;
+    --chart-5: 0.72 0.18 40;
+
+    --sidebar: 0.96 0.01 60;
+    --sidebar-foreground: 0.15 0.01 60;
+    --sidebar-primary: 0.65 0.22 65;
+    --sidebar-primary-foreground: 0.98 0.01 60;
+    --sidebar-accent: 0.6 0.25 20;
+    --sidebar-accent-foreground: 0.96 0.01 60;
+    --sidebar-border: 0.88 0.01 60;
+    --sidebar-ring: 0.65 0.22 65;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 0.12 0.02 60;
+    --foreground: 0.92 0.01 60;
+    --card: 0.16 0.02 60;
+    --card-foreground: 0.92 0.01 60;
+    --popover: 0.2 0.02 60;
+    --popover-foreground: 0.92 0.01 60;
+
+    --primary: 0.72 0.22 65;
+    --primary-foreground: 0.12 0.02 60;
+
+    --secondary: 0.5 0.18 275;
+    --secondary-foreground: 0.88 0.01 60;
+    --muted: 0.22 0.02 60;
+    --muted-foreground: 0.6 0.01 60;
+
+    --accent: 0.68 0.25 20;
+    --accent-foreground: 0.12 0.02 60;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.12 0.02 60;
+
+    --border: 0.26 0.02 60;
+    --input: 0.26 0.02 60;
+    --ring: 0.72 0.22 65;
+
+    --chart-1: 0.72 0.22 65;
+    --chart-2: 0.5 0.18 275;
+    --chart-3: 0.7 0.2 160;
+    --chart-4: 0.68 0.25 20;
+    --chart-5: 0.8 0.18 40;
+
+    --sidebar: 0.16 0.02 60;
+    --sidebar-foreground: 0.92 0.01 60;
+    --sidebar-primary: 0.72 0.22 65;
+    --sidebar-primary-foreground: 0.12 0.02 60;
+    --sidebar-accent: 0.68 0.25 20;
+    --sidebar-accent-foreground: 0.92 0.01 60;
+    --sidebar-border: 0.26 0.02 60;
+    --sidebar-ring: 0.72 0.22 65;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply dark;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  /* ── Transitions ─────────────────────────── */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── Rank Badges ─────────────────────────── */
+  .badge-bronze {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold tracking-wide;
+    background: linear-gradient(135deg, oklch(0.65 0.12 55), oklch(0.55 0.1 45));
+    color: oklch(0.95 0.02 60);
+    box-shadow: 0 0 8px -2px oklch(0.65 0.12 55 / 0.6);
+  }
+
+  .badge-silver {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold tracking-wide;
+    background: linear-gradient(
+      135deg,
+      oklch(0.75 0.02 240),
+      oklch(0.6 0.03 230)
+    );
+    color: oklch(0.12 0.02 60);
+    box-shadow: 0 0 8px -2px oklch(0.7 0.02 240 / 0.5);
+  }
+
+  .badge-gold {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold tracking-wide;
+    background: linear-gradient(135deg, oklch(0.82 0.18 85), oklch(0.7 0.2 70));
+    color: oklch(0.15 0.04 60);
+    box-shadow: 0 0 10px -2px oklch(0.8 0.18 85 / 0.7);
+  }
+
+  .badge-platinum {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold tracking-wide;
+    background: linear-gradient(
+      135deg,
+      oklch(0.72 0.18 290),
+      oklch(0.55 0.22 285)
+    );
+    color: oklch(0.95 0.01 60);
+    box-shadow: 0 0 10px -2px oklch(0.65 0.18 290 / 0.7);
+  }
+
+  /* ── Legend Tag ──────────────────────────── */
+  .legend-tag {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold tracking-wider;
+    background: linear-gradient(90deg, oklch(0.72 0.22 65), oklch(0.68 0.25 20));
+    color: oklch(0.08 0.02 60);
+    box-shadow: 0 0 12px -2px oklch(0.72 0.22 65 / 0.8), 0 0 20px -4px
+      oklch(0.68 0.25 20 / 0.5);
+    animation: legend-glow 2s ease-in-out infinite;
+  }
+
+  /* ── Vote Button ─────────────────────────── */
+  .button-vote {
+    @apply inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-sm transition-smooth;
+    background: linear-gradient(135deg, oklch(0.68 0.25 20), oklch(0.6 0.22 15));
+    color: oklch(0.96 0.01 60);
+    box-shadow: 0 2px 12px -3px oklch(0.68 0.25 20 / 0.6);
+  }
+  .button-vote:hover {
+    box-shadow: 0 4px 18px -3px oklch(0.68 0.25 20 / 0.8);
+    transform: translateY(-1px);
+  }
+
+  /* ── Card Elevation ─────────────────────── */
+  .card-elevated {
+    @apply bg-card border border-border;
+    box-shadow: 0 4px 24px -6px oklch(0 0 0 / 0.4);
+  }
+
+  /* ── Gradient Border ────────────────────── */
+  .card-rank-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .card-rank-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      oklch(0.72 0.22 65),
+      oklch(0.68 0.25 20)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ── Glow effect ────────────────────────── */
+  .glow-primary {
+    box-shadow: 0 0 20px -4px oklch(0.72 0.22 65 / 0.5);
+  }
+  .glow-accent {
+    box-shadow: 0 0 20px -4px oklch(0.68 0.25 20 / 0.5);
+  }
+
+  /* ── Scrollbar ──────────────────────────── */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes legend-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 12px -2px oklch(0.72 0.22 65 / 0.8), 0 0 20px -4px
+      oklch(0.68 0.25 20 / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 18px -1px oklch(0.72 0.22 65 / 1.0), 0 0 28px -2px
+      oklch(0.68 0.25 20 / 0.8);
+  }
+}

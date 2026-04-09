@@ -1,0 +1,23 @@
+{
+  "overview": "ApanStar is a hyper-local short-video platform for micro-influencers and skill-based challenges. Users discover talent by city/district, participate in weekly skill battles across categories like Gaming, Singing, and Coding, vote with daily coins, and earn rank progression from Bronze to Platinum. Referral unlocks and AI video styling drive growth and engagement.",
+  "features": [
+    "Hyper-local creator discovery by city/district",
+    "Weekly skill challenges with leaderboards (Gaming, Singing, Coding, Cooking)",
+    "Daily coin voting system with Legend tag for winners",
+    "Rank progression: Bronze → Silver → Gold → Platinum",
+    "Referral unlock gate: invite 2 friends to unlock uploads and AI tools",
+    "AI video styling with Professional, Cartoon, and Cinematic effects",
+    "User profiles with rank badges, vote counts, and challenge history"
+  ],
+  "category": "social",
+  "tags": [
+    "short-video",
+    "local-talent",
+    "challenges",
+    "gamification",
+    "micro-influencers",
+    "voting",
+    "referral"
+  ],
+  "last_updated": "2026-04-08T13:43:53.932Z"
+}
